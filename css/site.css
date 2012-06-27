@@ -1,0 +1,92 @@
+#stage{
+    position: absolute;
+    top: 0px;
+    bottom: 50px;
+    left: 0px;
+    right: 0px;
+    background: purple;
+    overflow: hidden;
+}
+#main_footer{
+    position: absolute;
+    display: block;
+    bottom: 0px;
+    height: 45px;
+    background: gray;
+    left: 0px;
+    right: 0px;
+}
+.page_container{
+    position: absolute;
+    width: 80%;
+    height: 84%;
+    left: 10%;
+    top: 10%;
+}
+    .page{
+        width: 110%;
+        left: -5%;
+        background: #fff;
+        position: absolute;
+        top: 2%;
+        height: 100%;
+        border: 1px solid;
+    }
+    .page.zero{
+        width: 110%;
+        left: -5%;
+        height: 100%;
+        top: 2%;
+        opacity: 1;
+    }
+    .page.out{
+        width: 220%;
+        top: -52%;
+        left: -55%;
+        height: 200%;
+        opacity: .0001;
+    }
+    .page.one{
+        width: 105%;
+        left: -2.5%;
+        top: -1%;
+    }
+    .page.two{
+        width: 100%;
+        left: 0%;
+        top: -3%;
+    }
+    .page.three{
+        width: 95%;
+        left: 2.5%;
+        top: -5%;
+    }
+    .page.four{
+        width: 90%;
+        left: 5%;
+        top: -7%;
+    }
+    .page.queue{
+        width: 90%;
+        left: 5%;
+        top: -7%;
+    }
+    
+/****GRID****/
+.grid_container{
+    height: 400px;
+    width: 740px;
+    margin: 20px auto;
+    background-color: #000;
+    position: relative;
+    overflow: auto;
+}
+    .grid_cell{
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        width: 175px;
+        margin: 5px;
+        height: 100px;
+        background-color: #fff;
+    }

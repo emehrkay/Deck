@@ -1,0 +1,23 @@
+#stage .cube_container{
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    -webkit-perspective: 600;
+}
+    #stage .cube_container .page{
+        height: 100%;
+        width: 100%;
+        -webkit-transform-style: preserve-3d;
+    	/*-webkit-transition-property: -webkit-transform;*/
+    	-webkit-transition: all 1.0s ease-in-out;
+    }
+    
+    .page.filp_out_left{
+        -webkit-transform: scaleY(1) rotateY(-90deg) translateX(-100%);
+    }
+    
+    .page.filp_in_right{
+        -webkit-transform: scaleY(1) rotateY(0deg) translateX(-100%);
+    }

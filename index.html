@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv=Content-type content="text/html; charset=utf-8">
+    <title>Deck TimeMachine Example</title>
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/site.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <script type="text/javascript" charset="utf-8" src="js/mootools.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/general.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/deck.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/deck.timemachine.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        window.addEvent('domready', function(){
+            var card_width = 110,
+                zindex = 1000,
+                pages = $$('.page'),
+                front = -1;
+                
+            var deck = new Deck.TimeMachine(pages, {
+                card_width: 110,
+                zindex: 1000,
+                'onBuild': function(){
+                    var self = this,
+                        footer = document.getElement('footer');
+
+                    Array.each(this.cards, function(page, i){
+                        new Element('a', {
+                            'href': '#',
+                            'text': i,
+                            'events':{
+                                'click': function(e){
+                                    e.stop();
+                                    self.toCard(i);
+                                }
+                            }
+                        }).inject(footer)
+                    })
+                }
+            }),
+            next = $('next'),
+            prev = $('previous'),
+            add = $('add'),
+            front_add = $('front_add'),
+            container = document.getElement('.page_container');
+                
+            next.addEvent('click', function(e){
+                e.stop();
+                deck.nextCard();
+            }); 
+            prev.addEvent('click', function(e){
+                e.stop();
+                deck.previousCard();
+            });
+            
+            add.addEvent('click', function(e){
+                e.stop();
+                var div = new Element('div', {
+                    'class': 'page',
+                    'text': deck.cards.length
+                }).inject(container)
+                deck.addCard(div, deck.cards.length);
+            });
+            
+            front_add.addEvent('click', function(e){
+                e.stop();
+                var div = new Element('div', {
+                    'class': 'page',
+                    'text': front--
+                }).inject(container, 'top')
+                .setStyles(deck.cardStyle(-1));
+                deck.addCard(div, 0);
+            });
+            
+            active_add.addEvent('click', function(e){
+                e.stop();
+                var div = new Element('div', {
+                    'class': 'page',
+                    'text': front--
+                }).inject(container, 'top')
+                .setStyles(deck.cardStyle(-1));
+                
+                var a = new Element('a', {
+                    'href': '#',
+                    'styles': {
+                        position: 'relative',
+                        top: 10,
+                        right: 10
+                    },
+                    text: 'x',
+                    'events': {
+                        'click': function(e){
+                            e.stop();
+                            deck.removeCard(deck.cards.indexOf(div));
+                        }
+                    }
+                }).inject(div);
+
+                deck.addCard(div, deck.active);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="stage">
+        <div class="page_container">
+            <div class="page">zero</div>
+            <div class="page">one</div>
+            <div class="page">two</div>
+            <div class="page">three</div>
+            <div class="page">four</div>
+            <div class="page">five</div>
+            <div class="page">six</div>
+            <div class="page">seven</div>
+            <div class="page">eight</div>
+            <div class="page">nine</div>
+        </div>
+    </div>
+    <footer id="main_footer">
+        <a href="#" id="next">&lt;</a> -- 
+        <a href="#" id="previous">&gt;</a> --
+        <a href="#" id="add">add card</a> --
+        <a href="#" id="front_add">front_add </a> --
+        <a href="#" id="active_add">active add</a>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv=Content-type content="text/html; charset=utf-8">
+    <title>Deck Grid Example</title>
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/site.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <script type="text/javascript" charset="utf-8" src="js/mootools.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/general.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/deck.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/deck.grid.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        window.addEvent('domready', function(){
+            var container = document.getElement('.grid_container');
+            var cards = $$('.grid_cell'),
+                deck = new Deck.Grid(cards);
+
+            var start = 0,
+                mid = 0,
+                first = $('first'),
+                last = $('last'),
+                middle = $('middle');
+
+            first.addEvent('click', function(e){
+                e.stop();
+                
+                var ele = new Element('div', {
+                    'class': 'grid_cell',
+                    'text': --start
+                }).inject(container);
+                
+                deck.addCard(ele, 0);
+            });
+             
+            last.addEvent('click', function(e){
+                e.stop();
+                
+                var ele = new Element('div', {
+                    'class': 'grid_cell',
+                    'text': --start
+                }).inject(container);
+                
+                deck.addCard(ele, deck.cards.length);
+                
+            });
+            
+            middle.addEvent('click', function(e){
+                e.stop();
+                
+                var ele = new Element('div', {
+                    'class': 'grid_cell',
+                    'text': ++mid
+                }).inject(container);
+                
+                deck.addCard(ele, Math.ceil(deck.cards.length / 2));
+                
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="grid_container">
+        <div class="grid_cell">one</div>
+        <div class="grid_cell">two</div>
+        <div class="grid_cell">three</div>
+        <div class="grid_cell">four</div>
+        <div class="grid_cell">five</div>
+        <div class="grid_cell">six</div>
+        <div class="grid_cell">seven</div>
+        <div class="grid_cell">eight</div>
+    </div>
+    <a href="#" id="first">add first</a>
+    <a href="#" id="middle">add middle</a>
+    <a href="#" id="last">add last</a>
+</body>
+</html>
