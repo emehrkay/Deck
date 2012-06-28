@@ -207,6 +207,9 @@ var Deck = new Class({
             element.inject(this.cards[pos], 'before');
         }
         
+        if(pos < this.active){
+            this.active++;
+        }
         
         this.cards.splice(pos, 0, element);
         this.fireEvent('cardAdded', [pos, card]);

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv=Content-type content="text/html; charset=utf-8">
+    <title>cube.html</title>
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/cube.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/site.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <script type="text/javascript" charset="utf-8" src="js/mootools.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/general.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/page.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        window.addEvent('domready', function(){
+            var page = new Page({
+                    'page_container': '.cube_container',
+                    'onBuild': function(){
+                        var self = this,
+                            footer = document.getElement('footer');
+
+                        Array.each(this.$pages, function(page, i){
+                            new Element('a', {
+                                'href': '#',
+                                'text': i,
+                                'events':{
+                                    'click': function(e){
+                                        e.stop();
+                                        self.toPage(i);
+                                    }
+                                }
+                            }).inject(footer)
+                        })
+                    },
+                    pageIn: function(index){
+                        var page = this.$pages[index];
+                        
+                        page.addClass('filp_in_right');
+                    },
+                    pageOut: function(index){
+                        var page = this.$pages[index];
+                        
+                        page.addClass('filp_out_left');
+                    },
+                    pageStyle: function(index){
+                        return {
+                            'z-index': this.zindex--,
+                            '-webkit-transform': 'scaleY(1) rotateY(90deg) translatex(100%)',
+                            'left': '100%'
+                        };
+                    }
+                }),
+                next = $('next'),
+                prev = $('previous');
+                
+            next.addEvent('click', function(e){
+                e.stop();
+                page.nextPage();
+            }); 
+            prev.addEvent('click', function(e){
+                e.stop();
+                page.previousPage();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="stage">
+        <div class="cube_container">
+            <div class="page">one</div>
+            <div class="page">two</div>
+            <div class="page">three</div>
+            <div class="page">four</div>
+            <div class="page">five</div>
+            <div class="page">six</div>
+            <div class="page">seven</div>
+            <div class="page">eight</div>
+            <div class="page">nine</div>
+        </div>
+    </div>
+    <footer id="main_footer">
+        <a href="#" id="next">next</a>
+        <a href="#" id="previous">previous</a>
+    </footer>
+</body>
+</html>

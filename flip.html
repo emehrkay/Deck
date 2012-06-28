@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv=Content-type content="text/html; charset=utf-8">
+    <title>Deck Flipboard Example</title>
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/site.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <script type="text/javascript" charset="utf-8" src="js/mootools.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/general.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/deck.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/deck.flipboard.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        window.addEvent('domready', function(){
+            var card_width = 110,
+                zindex = 1000,
+                pages = $$('.page');
+        
+            var deck = new Deck.Flipboard(pages, {
+                card_width: 110,
+                zindex: 1,
+                'onBuild': function(){
+                    var self = this,
+                        footer = document.getElement('footer');
+
+                    Array.each(this.cards, function(card, i){
+                        zindex--
+                        card.setStyle('z-index', zindex);
+                        new Element('a', {
+                            'href': '#',
+                            'text': i,
+                            'events':{
+                                'click': function(e){
+                                    e.stop();
+                                    self.toCard(i);
+                                }
+                            }
+                        }).inject(footer)
+                    });
+                }
+            }),
+            next = $('next'),
+            prev = $('previous');
+                
+            next.addEvent('click', function(e){
+                e.stop();
+                deck.nextCard();
+            }); 
+            prev.addEvent('click', function(e){
+                e.stop();
+                deck.previousCard();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="stage">
+        <div class="page_container">
+            <div class="page">zero</div>
+            <div class="page">one</div>
+            <div class="page">two</div>
+            <div class="page">three</div>
+            <div class="page">four</div>
+            <div class="page">five</div>
+            <div class="page">six</div>
+            <div class="page">seven</div>
+            <div class="page">eight</div>
+            <div class="page">nine</div>
+        </div>
+    </div>
+    <footer id="main_footer">
+        <a href="#" id="next">next</a>
+        <a href="#" id="previous">previous</a>
+    </footer>
+</body>
+</html>

@@ -50,7 +50,7 @@ Deck.TimeMachine = new Class({
     cardIn: function(index){
         var card = this.cards[index],
             fx = card.get('morph'),
-            style = this.cardStyle(this.active); 
+            style = this.cardStyle(this.previous); 
 
         fx.setOptions({
             unit: '%',
@@ -68,7 +68,7 @@ Deck.TimeMachine = new Class({
         var card = this.cards[index],
             fx = card.get('morph'),
             style = this.cardStyle(-1); 
-console.log('card out', index, style)
+
         fx.setOptions({
             unit: '%',
             duration: 500
@@ -96,10 +96,10 @@ console.log('card out', index, style)
 
         card.setStyle('display', 'block');
 
-        if(index < this.active || index === 0){
+        if(index < this.active || index < this.previous){
             update_index();
         }
-        
+
         fx.start(style).chain(function(){
             update_index();
         });
