@@ -237,7 +237,7 @@ var Deck = new Class({
             
             var card = this.cards.splice(index, 1);
             
-            this.$moveAllCards(index + 1, index > this.active ? 'forward' : 'backward');
+            this.$moveAllCards(index, index > this.active ? 'forward' : 'backward');
             this.fireEvent('cardRemoved', [index, card]);
         }
         

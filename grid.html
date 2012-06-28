@@ -54,6 +54,24 @@
                 
                 deck.addCard(ele, Math.ceil(deck.cards.length / 2));
                 
+                
+                    var a = new Element('a', {
+                        'href': '#',
+                        'styles': {
+                            position: 'relative',
+                            top: 10,
+                            right: 10
+                        },
+                        text: 'x',
+                        'events': {
+                            'click': function(e){
+                                e.stop();
+                                deck.removeCard(deck.cards.indexOf(ele));
+                                ele.destroy()
+                            }
+                        }
+                    }).inject(ele);
+                
             });
         });
     </script>
