@@ -7,7 +7,7 @@ Deck.Grid = new Class({
     
     options: {
         deck: 'deck',
-        columns: 4,
+        columns: 6,
         auto_layout: false,
         card: {
             'margin-top': 5,
@@ -29,8 +29,6 @@ Deck.Grid = new Class({
             
             self.cardMove(index, style);
         });
-        
-        //return this.parent();
     },
     
     cardIn: function(index){

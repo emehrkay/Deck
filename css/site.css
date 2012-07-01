@@ -75,7 +75,7 @@
 /****GRID****/
 .grid_container{
     height: 400px;
-    width: 740px;
+    width: 1200px;
     margin: 20px auto;
     background-color: #000;
     position: relative;
@@ -89,4 +89,23 @@
         margin: 5px;
         height: 100px;
         background-color: #fff;
+    }
+    
+/**TOP SITES**/
+#top_stage{
+    position: relative;
+    width: 550px;
+    height: 430px;
+    border: 1px solid #000;
+    margin: 50px auto;
+    -webkit-perspective: 800;
+    -webkit-perspective-origin: 50% 50%;
+}
+    .grid_cell{
+        width: 90px;
+        height: 100px;
+        position: absolute;
+        top: 0px;
+        -webkit-transform-origin: 100% 0%;
+        opacity: .8;
     }

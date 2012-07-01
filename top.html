@@ -7,13 +7,25 @@
     <link rel="stylesheet" href="css/site.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <script type="text/javascript" charset="utf-8" src="js/mootools.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/general.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/moofx.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/deck.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/deck.grid.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/deck.top_sites.js"></script>
     <script type="text/javascript" charset="utf-8">
+        Element.implement('animate', function(){
+            var moo = moofx(this);
+            moo.animate.apply(moo, arguments);
+            return this;
+        });
+        
         window.addEvent('domready', function(){
             var container = document.getElement('.grid_container');
             var cards = $$('.grid_cell'),
-                deck = new Deck.Grid(cards);
+                deck = new Deck.TopSites(cards, {
+                    'onCardAdded': function(index, card){
+                        console.log('added', index)
+                    }
+                });
 
             var start = 0,
                 mid = 0,
@@ -77,7 +89,7 @@
     </script>
 </head>
 <body>
-    <div class="grid_container">
+    <div class="grid_container" id="top_stage">
         <div class="grid_cell">one</div>
         <div class="grid_cell">two</div>
         <div class="grid_cell">three</div>
